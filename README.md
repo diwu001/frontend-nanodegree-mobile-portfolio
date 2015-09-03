@@ -1,4 +1,12 @@
-http://6903796f.ngrok.io/frontend-nanodegree-mobile-portfolio/index.html
+Part 1：
+
+1 Inline style.css and font.css to index.html by grunt-inline
+2 Minimize perfmatters.js by grunt-uglify
+3 Set analytics.js to be async
+4 Add media query for print.css 
+5 compress images pizzeria.jpg and profilepic.jpg
+
+Page Speed Insights Score 94
 
 ## Website Performance Optimization portfolio project
 

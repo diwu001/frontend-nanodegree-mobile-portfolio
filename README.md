@@ -49,6 +49,7 @@ For views/js/main.js
 3. Improve the for-loop for creating and appending all of the pizzas: get variable pizzaDiv out of the for-loop; use createDocumentFragment() to append all pizzas to DOM at one time.  
 4. Improve updatePositions() function: use variable scrollTop to avoid quering DOM everytime in for-loop.  
 5. Improve DOMContentLoaded event listener: minimize the total number of pizza movers depending on the size of screen width; use createDocumentFragment() to append all pizza movers to DOM at one time.  
+  
 For views/css/style.css  
 1. Add CSS transform animation to force GPU acceleration.
 

@@ -33,6 +33,13 @@ form {
   position: fixed;
   width: 256px;
   z-index: -1;
+  /* Improvement: add CSS transform animation to force GPU acceleration */
+  will-change: transform; 
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0); 
 }
 
 .randomPizzaContainer {

@@ -1,83 +1,61 @@
-Part 1：
+##Website Performance Optimization portfolio project
 
-1 Inline style.css and font.css to index.html by grunt-inline
-2 Minimize perfmatters.js by grunt-uglify
-3 Set analytics.js to be async
-4 Add media query for print.css 
-5 compress images pizzeria.jpg and profilepic.jpg
+Author: Tina D. Wu
+Date: 09 / 04 / 2015
 
-Page Speed Insights Score 94
+###Part 1: Optimize PageSpeed Insights score for index.html
 
-## Website Performance Optimization portfolio project
+#### Goal
+Perform opimizations to achieve a PageSpeed score of 90 on index.html.
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
-
-To get started, check out the repository, inspect the code,
-
-### Getting started
-
-####Part 1: Optimize PageSpeed Insights score for index.html
-
-Some useful tips to help you get started:
-
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
-
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
-
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
+#### To run the project
+1. Check out the repository at https://github.com/diwu001/frontend-nanodegree-mobile-portfolio
+2. Open a browser and visit localhost:8080
+3. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
 
   ``` bash
   $> cd /path/to/your-project-folder
   $> ngrok 8080
   ```
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+4. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! The original score for mobile is 77 and for desktop is 90.
+5. Run grunt to do cssmin, inline and uglify automatically. 
+6. The optimized code is in dist directory. To run the optimized website, change the page address in the public URL from index.html to dist/index.html. Run it through PageSpeed Insights and view new scores!
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+#### My Optimization
+1 Minimize style.css, font.css and print.css using grunt-cssmin to avoid CSS render blocking
+1 Inline style.css and font.css to index.html using grunt-inline to avoid CSS render blocking
+2 Add media query for print.css to avoid CSS render blocking
+3 Minimize perfmatters.js using grunt-uglify to avoid JS parse blocking
+4 Set analytics.js to be async to avoid JS parse blocking
+5 Compress images for pizzeria.jpg and profilepic.jpg
 
-####Part 2: Optimize Frames per Second in pizza.html
+Page Speed Insights Score: mobile 94; desktop 95
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+###Part 2: Optimize Frames per Second in pizza.html
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+#### Goal
+Optimize the website until frames per second rate of views/pizza.html is 60 fps or higher. Optimize the pizzas resizing time to be less than 5 ms.
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
+#### To run the project
+Open views/pizza.html in chrome browser. Observe the log information in console. Use Developer tools->Timeline to check frames per second.
 
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+#### My Optimization
+For views/js/main.js
+1 Change document.querySelector to document.getElementById; change document.querySelectorAll to document.getElementsByClassName.
+2 Improve changePizzaSizes() function: avoid query DOM every time in the for-loop; stop Force Synchronous Layout; avoid changing between pixel and percentage. The time for resizing pizza is less than 1ms now.
+3 Improve the for-loop for creating and appending all of the pizzas: get variable pizzaDiv out of the for-loop; use createDocumentFragment() to append all pizzas to DOM at one time.
+4 Improve updatePositions() function: use variable scrollTop to avoid quering DOM everytime in for-loop.
+5 Improve DOMContentLoaded event listener: minimize the total number of pizza movers depending on the size of screen width; use createDocumentFragment() to append all pizza movers to DOM at one time.
+For views/css/style.css
+1 Add CSS transform animation to force GPU acceleration.
 
-### Sample Portfolios
 
-Feeling uninspired by the portfolio? Here's a list of cool portfolios I found after a few minutes of Googling.
-
-* <a href="http://www.reddit.com/r/webdev/comments/280qkr/would_anybody_like_to_post_their_portfolio_site/">A great discussion about portfolios on reddit</a>
-* <a href="http://ianlunn.co.uk/">http://ianlunn.co.uk/</a>
-* <a href="http://www.adhamdannaway.com/portfolio">http://www.adhamdannaway.com/portfolio</a>
-* <a href="http://www.timboelaars.nl/">http://www.timboelaars.nl/</a>
-* <a href="http://futoryan.prosite.com/">http://futoryan.prosite.com/</a>
-* <a href="http://playonpixels.prosite.com/21591/projects">http://playonpixels.prosite.com/21591/projects</a>
-* <a href="http://colintrenter.prosite.com/">http://colintrenter.prosite.com/</a>
-* <a href="http://calebmorris.prosite.com/">http://calebmorris.prosite.com/</a>
-* <a href="http://www.cullywright.com/">http://www.cullywright.com/</a>
-* <a href="http://yourjustlucky.com/">http://yourjustlucky.com/</a>
-* <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
-* <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
-* <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+###References
+https://developer.chrome.com/devtools/docs/tips-and-tricks
+https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment
+https://medium.com/@matthiasak/removing-jquery-from-your-app-site-for-better-performance-4d37d4e0cc5b
+http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css
+Udacity Website Performance Optimization course
+Udacity Browser Rendering Optimization course

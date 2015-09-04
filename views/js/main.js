@@ -423,37 +423,10 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  /*function determineDx (elem, size) {
-    var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldsize = oldwidth / windowwidth;
-
-    // TODO: change to 3 sizes? no more xl?
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 0.25;
-        case "2":
-          return 0.3333;
-        case "3":
-          return 0.5;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
-    }
-
-    var newsize = sizeSwitcher(size);
-    var dx = (newsize - oldsize) * windowwidth;
-
-    return dx;
-  }*/
-
   // Iterates through pizza elements on the page and changes their widths
   //imporve the time for resizing pizza to about 1ms
   function changePizzaSizes(size) {
-    var newWidth = 25;
+    var newWidth;
     switch(size) {
         case "1": newWidth=25; break;   
         case "2": newWidth=33.3; break; 
@@ -461,7 +434,7 @@ var resizePizzas = function(size) {
         default: console.log("bug in change PizzaSizes()");
     }
     // Change document.querySelectorAll to document.getElementsByClassName
-    var randomPizza = document.getElementsByClassName(".randomPizzaContainer");
+    var randomPizza = document.getElementsByClassName("randomPizzaContainer");
    
     for (var i = 0; i < randomPizza.length; i++) {     
       randomPizza[i].style.width = newWidth + "%";
@@ -513,7 +486,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
   // Change document.querySelectorAll to document.getElementsByClassName
-  var items = document.getElementsByClassName('.mover');
+  var items = document.getElementsByClassName('mover');
   var scrollTop = document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollTop / 1250) + (i % 5));

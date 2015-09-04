@@ -439,7 +439,7 @@ var resizePizzas = function(size) {
     // Improvement: change document.querySelectorAll to document.getElementsByClassName
     var randomPizza = document.getElementsByClassName("randomPizzaContainer");
    
-    // Improvement: avoid query DOM every time in for loop; stop Force Synchronous Layout;
+    // Improvement: avoid query DOM every time in the for-loop; stop Force Synchronous Layout;
     // avoid changing between pixel and percentage. The time for resizing pizza is less than 1ms now.
     for (var i = 0; i < randomPizza.length; i++) {     
       randomPizza[i].style.width = newWidth + "%";
@@ -458,8 +458,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads.
-// Improvement: get variable pizzaDiv out of for loop; change document.querySelector to document.getElementById;
-// use createDocumentFragment() to append all pizza fragments to DOM one time.
+// Improvement: get variable pizzaDiv out of the for-loop; change document.querySelector to document.getElementById;
+// use createDocumentFragment() to append all pizza fragments to DOM at one time.
 var pizzasDiv = document.getElementById("randomPizzas");
 var pizzaCollections = document.createDocumentFragment();
 for (var i = 2; i < 100; i++) {
@@ -494,7 +494,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  // Improvement: use variable scrollTop to avoid quering DOM everytime in for loop;
+  // Improvement: use variable scrollTop to avoid quering DOM everytime in the for-loop;
   // change document.querySelectorAll to document.getElementsByClassName.
   var items = document.getElementsByClassName('mover');
   var scrollTop = document.body.scrollTop;
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var rows = 3;
   var count = rows * cols;
     
-  // Improvement: use createDocumentFragment() to append all pizza mover fragments to DOM one time.
+  // Improvement: use createDocumentFragment() to append all pizza movers to DOM at one time.
   var pizzaMoverCollection = document.createDocumentFragment();
   var elem;
     

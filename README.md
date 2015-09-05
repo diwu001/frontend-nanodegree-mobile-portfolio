@@ -44,11 +44,14 @@ Open views/pizza.html in chrome browser. Observe the log information in console.
 
 #### My Optimization
 For views/js/main.js  
-1. Change document.querySelector to document.getElementById; change document.querySelectorAll to document.getElementsByClassName.  
-2. Improve changePizzaSizes() function: avoid query DOM every time in the for-loop; stop Force Synchronous Layout; avoid changing between pixel and percentage. The time for resizing pizza is less than 1ms now.  
-3. Improve the for-loop for creating and appending all of the pizzas: get variable pizzaDiv out of the for-loop; use createDocumentFragment() to append all pizzas to DOM at one time.  
-4. Improve updatePositions() function: use variable scrollTop to avoid quering DOM everytime in for-loop.  
-5. Improve DOMContentLoaded event listener: minimize the total number of pizza movers depending on the size of screen width; use createDocumentFragment() to append all pizza movers to DOM at one time.  
+1. Define variable outside of the for-loop to save the array length. This can avoid quering DOM everytime in the for-loop.
+2. Declare variable outside of the for-loop to avoid creating variable in each iteration.
+3. Change document.querySelector to document.getElementById; change document.querySelectorAll to document.getElementsByClassName.  
+4. Improve changePizzaSizes() function: avoid query DOM every time in the for-loop; stop Force Synchronous Layout; avoid changing between pixel and percentage. The time for resizing pizza is less than 1ms now.  
+5. Improve the for-loop for creating and appending all of the pizzas: get variable pizzaDiv out of the for-loop; use createDocumentFragment() to append all pizzas to DOM at one time.  
+6. Improve updatePositions() function: use variable scrollTop to avoid quering DOM everytime in for-loop.  
+7. Improve DOMContentLoaded event listener: minimize the total number of pizza movers depending on the size of screen width; use createDocumentFragment() to append all pizza movers to DOM at one time.  
+
   
 For views/css/style.css  
 1. Add CSS transform animation to force GPU acceleration.

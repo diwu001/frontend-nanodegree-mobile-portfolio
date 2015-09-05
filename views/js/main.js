@@ -438,10 +438,13 @@ var resizePizzas = function(size) {
     
     // Improvement: change document.querySelectorAll to document.getElementsByClassName
     var randomPizza = document.getElementsByClassName("randomPizzaContainer");
-   
+    
+    // Imporvement: save array length in variable randomPizzaCount to avoid accessing the array's length property at each iteration
+    var randomPizzaCount = randomPizza.length;
+      
     // Improvement: avoid query DOM every time in the for-loop; stop Force Synchronous Layout;
     // avoid changing between pixel and percentage. The time for resizing pizza is less than 1ms now.
-    for (var i = 0; i < randomPizza.length; i++) {     
+    for (var i = 0; i < randomPizzaCount; i++) {     
       randomPizza[i].style.width = newWidth + "%";
     }
   }
@@ -494,12 +497,21 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  // Improvement: use variable scrollTop to avoid quering DOM everytime in the for-loop;
-  // change document.querySelectorAll to document.getElementsByClassName.
+  
+  // Improvement: change document.querySelectorAll to document.getElementsByClassName
   var items = document.getElementsByClassName('mover');
+    
+  // Imporvement: save array length in variable itemsCount to avoid accessing the array's length property at each iteration
+  var itemsCount = items.length;
+    
+  // Improvement: use variable scrollTop to avoid quering DOM everytime in the for-loop
   var scrollTop = document.body.scrollTop;
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+    
+  // Declare variable phase outside of the for-loop to avoid creating variable in each iteration
+  var phase;
+    
+  for (var i = 0; i < itemsCount; i++) {
+    phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -520,10 +532,11 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
     
-  // Improvement: minimize the total number of pizza movers depending on the size of screen width.
+  // Improvement: minimize the total number of pizza movers depending on the size of screen width and height.
   var screenWidth = window.screen.width;
+  var screenHeight = window.screen.height;
   var cols = Math.round(screenWidth/200);
-  var rows = 3;
+  var rows = Math.round(screenHeight/200);
   var count = rows * cols;
     
   // Improvement: use createDocumentFragment() to append all pizza movers to DOM at one time.

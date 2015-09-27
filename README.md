@@ -9,7 +9,7 @@ Date: 09 / 04 / 2015
 Perform opimizations to achieve a PageSpeed score of 90 on index.html.
 
 #### To run the project
-1. Check out the repository at https://github.com/diwu001/frontend-nanodegree-mobile-portfolio
+1. Check out the repository at https://github.com/diwu001/mobile-portfolio
 2. Open a browser and visit localhost:8080  
 3. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
 
